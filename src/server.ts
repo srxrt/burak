@@ -9,6 +9,7 @@ mongoose
 	.then((data) => {
 		console.log("MongoDB connection success");
 		const PORT = process.env.PORT || 3003;
+		// create server iwlatmadik?
 		app.listen(PORT, () => {
 			console.log(`Server is running successfully on port: ${PORT}`);
 		});
