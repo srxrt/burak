@@ -16,7 +16,7 @@ function getHighestIndex(arr: number[]): number {
 }
 
 console.log(getHighestIndex([5, 21, 12, 21, 8]));
-*/
+
 
 // H-TASK:
 
@@ -29,3 +29,23 @@ function getPositive(arr: number[]): string {
 }
 
 console.log(getPositive([1, -4, 2]));
+*/
+
+// H2-TASK:
+
+// Shunday function tuzing, unga string argument pass bolsin. Function ushbu agrumentdagi
+//digitlarni yangi stringda return qilsin
+// MASALAN: getDigits("m14i1t") return qiladi "141"
+
+function getDigits(str: string): string {
+	let digits: string = "";
+	for (let i = 0; i < str.length; i++) {
+		if (Number.isFinite(+str[i])) {
+			digits += str[i];
+		}
+	}
+
+	return digits;
+}
+
+console.log(getDigits("m14i1t"));
