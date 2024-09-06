@@ -3,11 +3,14 @@ import path from "path";
 const app = express();
 import router from "./router";
 import routerAdmin from "./routerAdmin";
+import morgan from "morgan";
+import { MORGAN_FORMAT } from "./libs/config";
 
 // entrance
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(morgan(MORGAN_FORMAT));
 
 // views
 app.set("views", path.join(__dirname, "views"));
