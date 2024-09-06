@@ -2,7 +2,7 @@ import express from "express";
 import path from "path";
 const app = express();
 import router from "./router";
-import routerAdmin from "./routerAdmin";
+import routerAdmin from "./router-admin";
 import morgan from "morgan";
 import { MORGAN_FORMAT } from "./libs/config";
 
