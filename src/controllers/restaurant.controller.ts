@@ -4,7 +4,7 @@ import MemberService from "../models/Member.service";
 import { MemberInput } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.enum";
 
-const restaurantController: T = {};
+const restaurantController: T = {}; //nimaga object? class emas?
 restaurantController.goHome = (req: Request, res: Response) => {
 	try {
 		console.log("goHome");

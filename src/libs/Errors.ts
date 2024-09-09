@@ -16,6 +16,8 @@ export enum Message {
 	UPDATE_FAILED = "Update is failed",
 }
 
+// super classning qaysi xususiyatini iwlatyapmiz? nmaga extend qildik,
+// prosta Errors dgan class qvosek bomasmidi?
 class Errors extends Error {
 	public code: HttpCode;
 	public message: Message;

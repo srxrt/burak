@@ -4,7 +4,7 @@ import Errors, { HttpCode, Message } from "../libs/Errors";
 import { MemberType } from "../libs/enums/member.enum";
 
 class MemberService {
-	private readonly memberModelClass;
+	private readonly memberModelClass; // member schema model class
 	constructor() {
 		this.memberModelClass = MemberModel;
 	}
