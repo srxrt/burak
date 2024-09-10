@@ -53,7 +53,7 @@ restaurantController.processSignup = async (req: Request, res: Response) => {
 	} catch (err) {
 		console.log("ERROR Process Signup", err);
 		res.send(err);
-		// bu error memberModelClass.create() dan kelyaptimi???
+
 	}
 };
 

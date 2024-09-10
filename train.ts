@@ -29,7 +29,7 @@ function getPositive(arr: number[]): string {
 }
 
 console.log(getPositive([1, -4, 2]));
-*/
+
 
 // H2-TASK:
 
@@ -49,3 +49,34 @@ function getDigits(str: string): string {
 }
 
 console.log(getDigits("m14i1t"));
+*/
+
+// I-TASK:
+
+// Shunday function yozing, u parametridagi array ichida eng kop takrorlangan
+//  raqamni topib qaytarsin.
+// MASALAN: majorityElement([1,2,3,4,5,4,3,4]) return 4
+
+function majorityElement(arr: number[]): number {
+	let count: number = 0;
+	let hNum: number = arr[0];
+	let prevHighCount = 0;
+
+	for (let i = 0; i < arr.length; i++) {
+		for (let j = 0; j < arr.length; j++) {
+			if (arr[i] === arr[j]) {
+				count++;
+			}
+		}
+
+		if (count > prevHighCount) {
+			hNum = arr[i];
+			prevHighCount = count;
+		}
+
+		count = 0;
+	}
+	return hNum;
+}
+
+console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4]));
