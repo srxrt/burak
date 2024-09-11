@@ -1,5 +1,7 @@
 import express from "express";
-const routerAdmin = express.Router();
+const router = express.Router();
 import memberController from "./controllers/member.controller";
 
-export default routerAdmin;
+router.post("/login", memberController.login);
+router.post("/signup", memberController.signup);
+export default router;

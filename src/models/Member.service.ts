@@ -11,6 +11,46 @@ class MemberService {
 		this.memberModelClass = MemberModel;
 	}
 
+	/** SPA */
+	public async signup(input: MemberInput): Promise<Member> {
+		const salt = await bcrypt.genSalt();
+		input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
+
+		try {
+			const result = await this.memberModelClass.create(input);
+			result.memberPassword = "";
+			return result.toJSON();
+		} catch (err) {
+			console.log("ERROR, model:signup:", err);
+			throw new Errors(HttpCode.BAD_REQUEST, Message.USED_NICK_PHONE);
+		}
+	}
+
+	public async login(input: LoginInput): Promise<Member> {
+		//TODO: consider member status later
+		const member = await this.memberModelClass
+			.findOne(
+				{ memberNick: input.memberNick },
+				{ memberNick: 1, memberPassword: 1 }
+			)
+			.exec();
+
+		if (!member) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
+
+		const isMatch = await bcrypt.compare(
+			input.memberPassword,
+			member.memberPassword
+		);
+
+		if (!isMatch) {
+			throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
+		}
+
+		return await this.memberModelClass.findById(member._id).lean().exec();
+	}
+
+	/**BSSR */
+
 	// these methods cannot simply return Member type, because they are async function
 	// so they have to return promise that is a member type. this is basically the same thing
 	// it would return
@@ -62,7 +102,6 @@ class MemberService {
 		}
 
 		const result = await this.memberModelClass.findById(member._id).exec();
-		console.log("RESULT line 66", result);
 		return result;
 	}
 }
