@@ -4,16 +4,19 @@ export enum HttpCode {
 	NOT_MODIFIED = 304,
 	BAD_REQUEST = 400,
 	UNAUTHORIZED = 401,
-	FORBIDDED = 403,
+	FORBIDDEN = 403,
 	NOT_FOUND = 404,
 	INTERNAL_SERVER_ERROR = 500,
 }
 
 export enum Message {
-	SOMETHING_WENT_WRONG = "Something went wrong",
-	NO_DATA_FOUND = "No data is found",
-	CREATE_FAILED = "Create is failed",
-	UPDATE_FAILED = "Update is failed",
+	SOMETHING_WENT_WRONG = "Something went wrong!",
+	NO_DATA_FOUND = "No data is found!",
+	CREATE_FAILED = "Create is failed!",
+	UPDATE_FAILED = "Update is failed!",
+	USED_NICK_PHONE = "You are inserting already used nick or phone!",
+	WRONG_PASSWORD = "Wrong password!",
+	NO_MEMBER_NICK = "No member with that nickname!",
 }
 
 // super classning qaysi xususiyatini iwlatyapmiz? nmaga extend qildik,

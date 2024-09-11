@@ -1,7 +1,7 @@
 import { T } from "../libs/types/common";
 import { Request, Response } from "express";
 import MemberService from "../models/Member.service";
-import { MemberInput } from "../libs/types/member";
+import { LoginInput, MemberInput } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.enum";
 
 const restaurantController: T = {}; //nimaga object? class emas?
@@ -30,12 +30,16 @@ restaurantController.getSignup = (req: Request, res: Response) => {
 	}
 };
 
-restaurantController.processLogin = (req: Request, res: Response) => {
+restaurantController.processLogin = async (req: Request, res: Response) => {
 	try {
 		console.log("processLogin");
-		res.send("Process login");
+		const input: LoginInput = req.body;
+		const memberService = new MemberService();
+		const result = await memberService.processLogin(input);
+		res.send(result);
 	} catch (err) {
 		console.log("ERROR Processlogin", err);
+		res.send(err);
 	}
 };
 restaurantController.processSignup = async (req: Request, res: Response) => {
@@ -53,7 +57,6 @@ restaurantController.processSignup = async (req: Request, res: Response) => {
 	} catch (err) {
 		console.log("ERROR Process Signup", err);
 		res.send(err);
-
 	}
 };
 
