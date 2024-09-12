@@ -3,7 +3,6 @@ import { T } from "../libs/types/common";
 import { Request, Response } from "express";
 import MemberService from "../models/Member.service";
 import { MemberInput } from "../libs/types/member";
-import { MemberType } from "../libs/enums/member.enum";
 import Errors from "../libs/Errors";
 
 // REACT ucun
