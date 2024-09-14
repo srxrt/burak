@@ -17,6 +17,7 @@ export enum Message {
 	USED_NICK_PHONE = "You are inserting already used nick or phone!",
 	WRONG_PASSWORD = "Wrong password!",
 	NO_MEMBER_NICK = "No member with that nickname!",
+	NOT_AUTHENTICATED = "You are not authenticated! Please login first.",
 }
 
 // super classning qaysi xususiyatini iwlatyapmiz? nmaga extend qildik,

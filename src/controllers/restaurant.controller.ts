@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import MemberService from "../models/Member.service";
 import { LoginInput, MemberInput, AdminRequest } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.enum";
+import { Message } from "../libs/Errors";
 
 const restaurantController: T = {}; //nimaga object? class emas?
 
@@ -82,4 +83,20 @@ restaurantController.processLogin = async (
 	}
 };
 
+restaurantController.checkAuthSession = async (
+	req: AdminRequest,
+	res: Response
+) => {
+	try {
+		if (req.session?.member) {
+			res.send(
+				`<script>alert('Hello ${req.session.member.memberNick}')</script>`
+			);
+		} else {
+			res.send(`<script> alert("${Message.NOT_AUTHENTICATED}")</script>`);
+		}
+	} catch (err) {
+		res.send(err);
+	}
+};
 export default restaurantController;
