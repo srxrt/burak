@@ -49,7 +49,7 @@ function getDigits(str: string): string {
 }
 
 console.log(getDigits("m14i1t"));
-*/
+
 
 // I-TASK:
 
@@ -80,3 +80,21 @@ function majorityElement(arr: number[]): number {
 }
 
 console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4]));
+*/
+
+// J-TASK:
+
+// Shunday function yozing, u string qabul qilsin va
+// string ichidagi eng uzun sozni qaytarsin.
+// MASALAN: findLongestWord("I come from Uzbekistan") return "Uzbekistan"
+
+function findLongestWord(str: string): string {
+	let arr: string[] = str.split(" ");
+	let longest: string = arr[0];
+	for (let i = 0; i < arr.length; i++) {
+		if (longest.length < arr[i].length) longest = arr[i];
+	}
+	return longest;
+}
+
+console.log(findLongestWord("I come from Uzbekistan"));
