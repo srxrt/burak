@@ -12,7 +12,7 @@ import ConnectMongoDBSession from "connect-mongodb-session";
 const MongoDBStore = ConnectMongoDBSession(session);
 
 const store = new MongoDBStore({
-	uri: String(process.env.MONGO_URI),
+	uri: String(process.env.MONGO_URL),
 	collection: "sessions",
 });
 
@@ -21,6 +21,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(morgan(MORGAN_FORMAT));
+
+// sessions
 app.use(
 	session({
 		secret: String(process.env.SESSION_SECRET),
