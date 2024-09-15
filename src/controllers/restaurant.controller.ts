@@ -3,9 +3,9 @@ import { Request, Response } from "express";
 import MemberService from "../models/Member.service";
 import { LoginInput, MemberInput, AdminRequest } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.enum";
-import { Message } from "../libs/Errors";
+import Errors, { Message } from "../libs/Errors";
 
-const restaurantController: T = {}; //nimaga object? class emas?
+const restaurantController: T = {};
 
 const memberService = new MemberService();
 
@@ -15,6 +15,7 @@ restaurantController.goHome = (req: Request, res: Response) => {
 		res.render("home");
 	} catch (err) {
 		console.log("ERROR GOHOME", err);
+		res.redirect("/admin");
 	}
 };
 
@@ -24,6 +25,7 @@ restaurantController.getSignup = (req: Request, res: Response) => {
 		res.render("signup");
 	} catch (err) {
 		console.log("ERROR Signup", err);
+		res.redirect("/admin");
 	}
 };
 
@@ -50,7 +52,11 @@ restaurantController.processSignup = async (
 		// res.render("signup", { user: result });
 	} catch (err) {
 		console.log("ERROR Process Signup", err);
-		res.send(err);
+		const message =
+			err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
+		res.send(
+			`<script> alert("${message}")window.location.replace('/admin/signup')</script>`
+		);
 	}
 };
 
@@ -60,6 +66,7 @@ restaurantController.getLogin = (req: Request, res: Response) => {
 		res.render("login");
 	} catch (err) {
 		console.log("ERROR Login", err);
+		res.redirect("/admin");
 	}
 };
 
@@ -79,7 +86,11 @@ restaurantController.processLogin = async (
 		});
 	} catch (err) {
 		console.log("ERROR Processlogin", err);
-		res.send(err);
+		const message =
+			err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
+		res.send(
+			`<script> alert("${message}")window.location.replace('/admin/login')</script>`
+		);
 	}
 };
 
@@ -97,6 +108,18 @@ restaurantController.checkAuthSession = async (
 		}
 	} catch (err) {
 		res.send(err);
+	}
+};
+
+restaurantController.logout = async (req: AdminRequest, res: Response) => {
+	try {
+		console.log("Logout");
+		req.session.destroy(() => {
+			res.redirect("/admin");
+		});
+	} catch (err) {
+		console.log(err);
+		res.redirect("/admin");
 	}
 };
 export default restaurantController;
