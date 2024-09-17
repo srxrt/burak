@@ -1,4 +1,4 @@
-import express from "express";
+import express, { NextFunction } from "express";
 import path from "path";
 const app = express();
 import router from "./router";
@@ -8,6 +8,7 @@ import { MORGAN_FORMAT } from "./libs/config";
 
 import session from "express-session";
 import ConnectMongoDBSession from "connect-mongodb-session";
+import { T } from "./libs/types/common";
 
 const MongoDBStore = ConnectMongoDBSession(session);
 
@@ -34,8 +35,11 @@ app.use(
 		saveUninitialized: true,
 	})
 );
-
-// sessions
+app.use((req, res, next) => {
+	const sessionInstance = req.session as T;
+	res.locals.member = sessionInstance.member;
+	next();
+});
 
 // views
 app.set("views", path.join(__dirname, "views"));
