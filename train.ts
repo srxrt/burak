@@ -98,3 +98,6 @@ function findLongestWord(str: string): string {
 }
 
 console.log(findLongestWord("I come from Uzbekistan"));
+
+//  arr = ["I", "come", "from", "Uzbekistan"]
+// longest = "come"
