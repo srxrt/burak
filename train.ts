@@ -80,7 +80,7 @@ function majorityElement(arr: number[]): number {
 }
 
 console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4]));
-*/
+
 
 // J-TASK:
 
@@ -98,6 +98,20 @@ function findLongestWord(str: string): string {
 }
 
 console.log(findLongestWord("I come from Uzbekistan"));
+*/
+// K-TASK:
 
-//  arr = ["I", "come", "from", "Uzbekistan"]
-// longest = "come"
+// Shunday function yozing, u string qabul qilsin va string ichidagi unli harflar sonini qaytarsin.
+// MASALAN: countVowels("string") return 1;
+
+function countVowels(str: string): number {
+	let count: number = 0;
+	str = str.toLowerCase();
+	let arr: string[] = ["a", "e", "i", "o", "u"];
+	for (let i = 0; i < str.length; i++) {
+		if (arr.includes(str[i])) count++;
+	}
+	return count;
+}
+
+console.log(countVowels("deadpool"));
