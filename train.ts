@@ -98,7 +98,7 @@ function findLongestWord(str: string): string {
 }
 
 console.log(findLongestWord("I come from Uzbekistan"));
-*/
+
 // K-TASK:
 
 // Shunday function yozing, u string qabul qilsin va string ichidagi unli harflar sonini qaytarsin.
@@ -115,3 +115,22 @@ function countVowels(str: string): number {
 }
 
 console.log(countVowels("deadpool"));
+*/
+
+// L-TASK:
+
+// Shunday function yozing, u string qabul qilsin va string ichidagi hamma sozlarni
+// chappasiga yozib va sozlar ketma - ketligini buzmasdan stringni qaytarsin.
+// MASALAN: reverseSentence("we like coding!") return "ew ekil gnidoc";
+
+function reverseSentence(str: string): string {
+	const arr: string[] = str.split(" ");
+	const newStr: string = arr
+		.map((ele) => {
+			return ele.split("").reverse().join("");
+		})
+		.join(" ");
+	return newStr;
+}
+
+console.log(reverseSentence("May the Force be with you"));

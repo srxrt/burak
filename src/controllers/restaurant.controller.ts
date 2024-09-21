@@ -35,21 +35,13 @@ restaurantController.processSignup = async (
 ) => {
 	try {
 		console.log("processSignup");
-
 		const newMember: MemberInput = req.body;
 		newMember.memberType = MemberType.RESTAURANT;
 		const result = await memberService.processSignup(newMember);
-		// session authentication =>
-		// signup bolgandan kn sessionning iciga member credentialsni yukladik
-		// va sessionlarni hosil qilamiz
-		req.session.member = result; //this is modifying the session
+		req.session.member = result;
 		req.session.save(() => {
-			//saves the session data to the session store
-			res.send(result); // puts the session id into the cookie and modifies the response to include that cookie
+			res.send(result);
 		});
-
-		// SESSION Authentication
-		// res.render("signup", { user: result });
 	} catch (err) {
 		console.log("ERROR Process Signup", err);
 		const message =
@@ -79,11 +71,9 @@ restaurantController.processLogin = async (
 		const input: LoginInput = req.body;
 
 		const result = await memberService.processLogin(input);
-		console.log("RESULT:", req);
 		req.session.member = result;
 		req.session.save(() => {
 			res.send(result);
-			// res.render("login", { user: result });
 		});
 	} catch (err) {
 		console.log("ERROR Processlogin", err);
