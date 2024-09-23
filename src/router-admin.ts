@@ -31,8 +31,8 @@ routerAdmin.post(
 	makeUploader("products").array("productImages", 5),
 	productController.createNewProduct
 );
-routerAdmin.get(
-	"/product/ update/:id",
+routerAdmin.post(
+	"/product/update/:id",
 	restaurantController.verifyRestaurant,
 	productController.updateChosenProduct
 );
