@@ -38,5 +38,15 @@ routerAdmin.post(
 );
 
 // Users
+routerAdmin.get(
+	"/user/all",
+	restaurantController.verifyRestaurant,
+	restaurantController.getUsers
+);
+routerAdmin.get(
+	"/user/update/:id",
+	restaurantController.verifyRestaurant,
+	restaurantController.updateChosenUser
+);
 
 export default routerAdmin;
