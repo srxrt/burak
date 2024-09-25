@@ -4,6 +4,10 @@
 	<body>
 		<div>PRODUCTS PAGE</div>
 		<div><%=member.memberNick%></div>
+		<% products.map((ele, key)=>{ %>
+		<p><%=ele.productName%> - <%=ele.productSize%></p>
+
+		<% })%>
 	</body>
 	<%- include('includes/footer') %>
 </html>
