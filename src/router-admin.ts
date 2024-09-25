@@ -43,8 +43,8 @@ routerAdmin.get(
 	restaurantController.verifyRestaurant,
 	restaurantController.getUsers
 );
-routerAdmin.get(
-	"/user/update/:id",
+routerAdmin.post(
+	"/user/update",
 	restaurantController.verifyRestaurant,
 	restaurantController.updateChosenUser
 );
