@@ -135,7 +135,7 @@ function reverseSentence(str: string): string {
 
 console.log(reverseSentence("May the Force be with you"));
 
-*/
+
 // M-TASK:
 
 // Shunday function yozing, u raqamlardan tashkil topgan array qabul qilsin va array ichidagi har bir raqam uchun raqamni ozi va hamda osha raqamni kvadratidan tashkil topgan object hosil qilib, hosil bolgan objectlarni array ichida qaytarsin.
@@ -147,3 +147,13 @@ function getSquareNumbers(arr: number[]): any {
 	});
 }
 console.log(getSquareNumbers([11, 22, 33]));
+*/
+
+// Shunday function yozing, u string qabul qilsin va string palindrom yani togri oqilganda ham, orqasidan oqilganda ham bir hil oqiladigan soz ekanligini aniqlab boolean qiymat qaytarsin.
+// MASALAN: palindromCheck("dad") return true;  palindromCheck("son") return false;
+
+function palindromCheck(str: string): boolean {
+	return str === str.split("").reverse().join("") ? true : false;
+}
+
+console.log(palindromCheck("kiyik"));
