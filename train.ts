@@ -147,7 +147,7 @@ function getSquareNumbers(arr: number[]): any {
 	});
 }
 console.log(getSquareNumbers([11, 22, 33]));
-*/
+
 
 // Shunday function yozing, u string qabul qilsin va string palindrom yani togri oqilganda ham, orqasidan oqilganda ham bir hil oqiladigan soz ekanligini aniqlab boolean qiymat qaytarsin.
 // MASALAN: palindromCheck("dad") return true;  palindromCheck("son") return false;
@@ -157,3 +157,17 @@ function palindromCheck(str: string): boolean {
 }
 
 console.log(palindromCheck("kiyik"));
+*/
+
+// O-TASK:
+
+// Shunday function yozing, u har xil valuelardan iborat array qabul qilsin va array
+// ichidagi sonlar yigindisini hisoblab chiqqan javobni qaytarsin.
+// MASALAN: calculateSumOfNumbers([10, "10", {son: 10}, true, 35]) return 45
+
+function calculateSumOfNumbers(arr: any): number {
+	return arr.reduce((count: number, ele: any) => {
+		return (count += typeof ele === "number" ? ele : 0);
+	}, 0);
+}
+console.log(calculateSumOfNumbers([10, "15", { son: 10 }, true, 35]));
