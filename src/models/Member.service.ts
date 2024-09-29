@@ -13,7 +13,6 @@ import { shapeIntoMongooseObjectId } from "../libs/config";
 class MemberService {
 	private readonly memberModelClass; // member schema model class
 	constructor() {
-		// nimaga bunga tenglab oldik? prosta ishlatsagam bolardiyu.
 		this.memberModelClass = MemberModel;
 	}
 
@@ -33,7 +32,6 @@ class MemberService {
 	}
 
 	public async login(input: LoginInput): Promise<Member> {
-		//TODO: consider member status later
 		const member = await this.memberModelClass
 			.findOne(
 				{ memberNick: input.memberNick },
@@ -56,19 +54,10 @@ class MemberService {
 	}
 
 	/**BSSR */
-
-	// these methods cannot simply return Member type, because they are async function
-	// so they have to return promise that is a member type. this is basically the same thing
-	// it would return
-	// if it wasnt an async function. this is just a part of the syntax
-
 	public async processSignup(input: MemberInput): Promise<Member> {
 		const exist = await this.memberModelClass
 			.findOne({ memberType: MemberType.RESTAURANT })
 			.exec();
-
-		// .exec() => bu query chainni toxtat/tugat or query chainning oxiri dgan manoni bildiradi
-		// va resourceni kam iwlatadi. Buni qoymasak ham iwlaydi.
 
 		if (exist) throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
 		const salt = await bcrypt.genSalt();
@@ -84,11 +73,6 @@ class MemberService {
 	}
 
 	public async processLogin(input: LoginInput): Promise<Member> {
-		//findOne() ikkinchi argument chaqirilishi shart bolgan propertylarni kiritish uchun ishlatiladi
-		// bu joyda memberNick va memberPassword chaqirilishi shart qilib belgilandi.
-		// memberPassword ni {select:false} qlib belgilagan bolsagam, endi bizga qaytaradi
-		// propertylar ketmaketligiga amal qlish kerak
-
 		const member = await this.memberModelClass
 			.findOne(
 				{ memberNick: input.memberNick },
