@@ -172,3 +172,23 @@ function calculateSumOfNumbers(arr: any): number {
 }
 console.log(calculateSumOfNumbers([10, "15", { son: 10 }, true, 35]));
 */
+// P-TASK:
+
+// Shunday function yozing, u object qabul qilsin va arrayni object arrayga otkazib arrayni qaytarsin qaytarsin.
+// MASALAN: objectToArray( {a: 10, b: 20}) return [['a', 10], ['b', 20]]
+
+function objectToArray(obj: Object) {
+	const keys = Object.keys(obj);
+	const values = Object.values(obj);
+	return keys.map((key, i) => [key, values[i]]);
+}
+
+console.log(
+	objectToArray({
+		a: 10,
+		b: 20,
+		name: "KEVIN",
+		duringDay: "Bruce Wayne",
+		atNight: "Batman",
+	})
+);
