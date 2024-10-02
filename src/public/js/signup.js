@@ -3,7 +3,7 @@ console.log("Signup frontend javascript file");
 // prerendering the image
 $(function () {
 	const fileTarget = $(".file-box .upload-hidden");
-	let filename;
+
 	fileTarget.on("change", function () {
 		if (window.FileReader) {
 			const uploadFile = $(this)[0].files[0];
@@ -17,9 +17,8 @@ $(function () {
 						.attr("src", URL.createObjectURL(uploadFile))
 						.addClass("success");
 				}
-				filename = $(this)[0].files[0].name;
 			}
-
+			const filename = uploadFile.name;
 			$(this).siblings(".upload-name").val(filename);
 		}
 	});
@@ -55,4 +54,5 @@ function validateSignupForm() {
 		alert("Please insert restaurant image");
 		return false;
 	}
+	return true;
 }
