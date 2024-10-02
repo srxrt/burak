@@ -14,7 +14,6 @@ $(function () {
 			.then((response) => {
 				const result = response.data;
 				if (result.data) {
-					console.log("User updated!");
 					$(".member-status").blur();
 				} else {
 					alert("User update failed!");

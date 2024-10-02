@@ -157,7 +157,7 @@ function palindromCheck(str: string): boolean {
 }
 
 console.log(palindromCheck("kiyik"));
-*/
+
 
 // O-TASK:
 
@@ -171,3 +171,4 @@ function calculateSumOfNumbers(arr: any): number {
 	}, 0);
 }
 console.log(calculateSumOfNumbers([10, "15", { son: 10 }, true, 35]));
+*/
