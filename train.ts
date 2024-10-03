@@ -171,7 +171,7 @@ function calculateSumOfNumbers(arr: any): number {
 	}, 0);
 }
 console.log(calculateSumOfNumbers([10, "15", { son: 10 }, true, 35]));
-*/
+
 // P-TASK:
 
 // Shunday function yozing, u object qabul qilsin va arrayni object arrayga otkazib arrayni qaytarsin qaytarsin.
@@ -191,4 +191,29 @@ console.log(
 		duringDay: "Bruce Wayne",
 		atNight: "Batman",
 	})
+);
+*/
+
+// Q-TASK:
+
+// Shunday function yozing, u 2 ta parametrgga ega bolib birinchisi object, ikkinchisi string.
+//  Agar string parametr objectni propertysi bolsa true bolmasa false qaytarsin.
+// MASALAN: hasProperty({name: "BMW", model: "M3"}, "model") return true; hasProperty({name: "BMW", model: "M3"}, "year") return false
+
+function hasProperty(obj: Object, prop: string): boolean {
+	const arr = Object.keys(obj);
+	return arr.includes(prop);
+}
+
+console.log(
+	hasProperty(
+		{
+			name: "BMW",
+			model: "M3",
+			year: 2005,
+			game: "Need For Speed: Most Wanted",
+			color: "White-Blue",
+		},
+		"game"
+	)
 );
