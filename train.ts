@@ -192,7 +192,7 @@ console.log(
 		atNight: "Batman",
 	})
 );
-*/
+
 
 // Q-TASK:
 
@@ -217,3 +217,17 @@ console.log(
 		"game"
 	)
 );
+*/
+
+// R-TASK:
+
+// Shunday function yozing, u string parametrga ega bolsin.
+// 	String "1+2" holatda pass qilinganda string ichidagi sonlar yigindisini number holatda qaytarsin.
+// MASALAN: calculate("1+3") return 4;
+
+function calculate(str: string): number {
+	const arr: string[] = str.split("+");
+	return arr.reduce((total, ele) => (total += Number(ele)), 0);
+}
+
+console.log(calculate("1+3"));
