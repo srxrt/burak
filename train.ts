@@ -217,7 +217,7 @@ console.log(
 		"game"
 	)
 );
-*/
+
 
 // R-TASK:
 
@@ -231,3 +231,19 @@ function calculate(str: string): number {
 }
 
 console.log(calculate("1+3"));
+*/
+// S-TASK:
+
+// Shunday function yozing, u numberlardan tashkil topgan array qabul qilsin va
+// osha numberlar orasidagi tushib qolgan sonni topib uni return qilsin
+// MASALAN: missingNumber([3, 0, 1]) return 2
+
+function missingNumber(arr: number[]) {
+	let num = arr.sort()[0];
+	for (let ele of arr) {
+		if (ele !== num) return num;
+		num++;
+	}
+}
+
+console.log(missingNumber([3, 0, 1]));
