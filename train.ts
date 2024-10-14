@@ -247,8 +247,6 @@ function missingNumber(arr: number[]) {
 }
 
 console.log(missingNumber([3, 0, 1]));
-*/
-// T-TASK:
 
 // Shunday function yozing, u sonlardan tashkil topgan 2
 // ta array qabul qilsin va ikkala arraydagi sonlarni tartiblab bir arrayda qaytarsin
@@ -262,3 +260,17 @@ function mergeSortedArrays(arr1: number[], arr2: number[]): number[] {
 }
 
 console.log(mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]));
+*/
+// U-TASK:
+
+// Shunday function yozing, uni number parametri bolsin va 0 dan berilgan parametrgacha bolgan oraliqdagi faqat toq sonlar nechtaligini return qilsin
+// MASALAN: sumOdds(9) return 4; sumOdds(11) return 5;
+
+function sumOdds(num: number): number {
+	let count = 0;
+	for (let i = 1; i < num; i = i + 2) {
+		count++;
+	}
+	return count;
+}
+console.log(sumOdds(10));
