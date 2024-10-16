@@ -260,7 +260,6 @@ function mergeSortedArrays(arr1: number[], arr2: number[]): number[] {
 }
 
 console.log(mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]));
-*/
 // U-TASK:
 
 // Shunday function yozing, uni number parametri bolsin va 0 dan berilgan parametrgacha bolgan oraliqdagi faqat toq sonlar nechtaligini return qilsin
@@ -274,3 +273,28 @@ function sumOdds(num: number): number {
 	return count;
 }
 console.log(sumOdds(10));
+*/
+
+// V-TASK:
+
+// Shunday function yozing, uni string parametri bolsin va
+// stringdagi harf va u harf necha marta takrorlangani sonidan tashkil topgan object qaytarsin.
+// MASALAN: countChars("hello") return {h: 1, e: 1, l: 2, o: 1}
+interface T {
+	[key: string]: any;
+}
+function countChars(str: string) {
+	const arr = str.split("");
+	let count = 0;
+	let counts: T = {};
+	arr.forEach((ele) => {
+		count = 0;
+		arr.forEach((e) => {
+			if (ele === e) count++;
+		});
+		counts[ele] = count;
+	});
+	return counts;
+}
+
+console.log(countChars("helllo"));
