@@ -273,7 +273,6 @@ function sumOdds(num: number): number {
 	return count;
 }
 console.log(sumOdds(10));
-*/
 
 // V-TASK:
 
@@ -298,3 +297,24 @@ function countChars(str: string) {
 }
 
 console.log(countChars("helllo"));
+*/
+// W-TASK:
+
+// Shunday function yozing, uni array va number parametrlari bolsin. Function arrayni numberda berilgan uzunlikda kesib bolaklarga ajratilgan array holatida qaytarsin
+// MASALAN: chunkArray([1,2,3,4,5,6,7,8,9,10], 3) return [[1,2,3], [4,5,6], [7,8,9], [10]]
+
+function chunkArray(arr: number[], num: number) {
+	let smallArr: number[] = [];
+	let bigArr: number[][] = [];
+
+	arr.map((ele, index) => {
+		smallArr.push(ele);
+		if ((index + 1) % num === 0) {
+			bigArr.push(smallArr);
+			smallArr = [];
+		}
+	});
+	smallArr.length ? bigArr.push(smallArr) : bigArr;
+	return bigArr;
+}
+console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3));
