@@ -32,6 +32,7 @@ memberController.signup = async (req: Request, res: Response) => {
 		else res.status(Errors.standard.code).json(Errors.standard);
 	}
 };
+
 memberController.login = async (req: Request, res: Response) => {
 	try {
 		console.log("Login");
@@ -50,6 +51,7 @@ memberController.login = async (req: Request, res: Response) => {
 		else res.status(Errors.standard.code).json(Errors.standard);
 	}
 };
+
 memberController.logout = async (req: Request, res: Response) => {
 	try {
 		console.log("logout");
@@ -61,6 +63,7 @@ memberController.logout = async (req: Request, res: Response) => {
 		else res.status(Errors.standard.code).json(Errors.standard);
 	}
 };
+
 memberController.getMemberDetail = async (
 	req: ExtendedRequest,
 	res: Response
@@ -75,6 +78,7 @@ memberController.getMemberDetail = async (
 		else res.status(Errors.standard.code).json(Errors.standard);
 	}
 };
+
 memberController.verifyAuth = async (
 	req: ExtendedRequest,
 	res: Response,
