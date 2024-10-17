@@ -4,10 +4,12 @@ import { Request, Response } from "express";
 import MemberService from "../models/Member.service";
 import { MemberInput } from "../libs/types/member";
 import Errors from "../libs/Errors";
+import AuthService from "../models/Auth.service";
 
 // REACT ucun
 const memberController: T = {};
 const memberService = new MemberService();
+const authService = new AuthService();
 
 memberController.signup = async (req: Request, res: Response) => {
 	try {
@@ -16,6 +18,8 @@ memberController.signup = async (req: Request, res: Response) => {
 		const input: MemberInput = req.body,
 			result: Member = await memberService.signup(input);
 		// TODO: TOKEN
+		const token = await authService.createToken(result);
+		console.log(token);
 
 		res.json({ member: result });
 	} catch (err) {
@@ -30,6 +34,8 @@ memberController.login = async (req: Request, res: Response) => {
 		const input: LoginInput = req.body,
 			result = await memberService.login(input);
 		//TODO: TOKENs
+		const token = await authService.createToken(result);
+		console.log(token);
 		res.json({ member: result });
 	} catch (err) {
 		console.log("ERROR Login", err);

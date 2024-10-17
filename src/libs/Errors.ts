@@ -19,6 +19,7 @@ export enum Message {
 	NO_MEMBER_NICK = "No member with that nickname!",
 	NOT_AUTHENTICATED = "You are not authenticated! Please login first.",
 	BLOCKED_USER = "You have been blocked ,contact the restaurant",
+	TOKEN_CREATION_FAILED = "Token creation failed",
 }
 
 // super classning qaysi xususiyatini iwlatyapmiz? nmaga extend qildik,
