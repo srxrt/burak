@@ -8,28 +8,17 @@ class AuthService {
 	constructor() {
 		this.secretToken = process.env.TOKEN_SECRET as string;
 	}
-	public async createToken(payload: Member) {
+	public async createToken(payload: Member): Promise<string> {
 		return new Promise((resolve, reject) => {
 			const duration = `${AUTH_TIMER}`;
-			jwt.sign(
-				payload,
-				this.secretToken,
-				{ expiresIn: `${duration}h` },
-				(err, token) => {
-					if (err)
-						reject(
-							new Errors(HttpCode.UNAUTHORIZED, Message.TOKEN_CREATION_FAILED)
-						);
-					else resolve(token);
-				}
-			);
+			jwt.sign(payload, this.secretToken, { expiresIn: `${duration}h` }, (err, token) => {
+				if (err) reject(new Errors(HttpCode.UNAUTHORIZED, Message.TOKEN_CREATION_FAILED));
+				else resolve(token as string);
+			});
 		});
 	}
 	public async checkAuth(token: string): Promise<Member> {
-		const result: Member = (await jwt.verify(
-			token,
-			this.secretToken
-		)) as Member;
+		const result: Member = (await jwt.verify(token, this.secretToken)) as Member;
 		console.log("___________AUTH:", result.memberNick);
 		return result;
 	}

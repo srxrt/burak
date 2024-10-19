@@ -19,10 +19,11 @@ const store = new MongoDBStore({
 });
 
 // entrance
+app.use(express.static(path.join(__dirname, "public")));
+app.use("/uploads", express.static("./uploads"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
 app.use(morgan(MORGAN_FORMAT));
 
 // sessions

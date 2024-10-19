@@ -1,10 +1,5 @@
 import MemberModel from "../schema/Member.model";
-import {
-	LoginInput,
-	Member,
-	MemberInput,
-	MemberUpdateInput,
-} from "../libs/types/member";
+import { LoginInput, Member, MemberInput, MemberUpdateInput } from "../libs/types/member";
 import Errors, { HttpCode, Message } from "../libs/Errors";
 import { MemberStatus, MemberType } from "../libs/enums/member.enum";
 import * as bcrypt from "bcryptjs";
@@ -47,10 +42,7 @@ class MemberService {
 			throw new Errors(HttpCode.FORBIDDEN, Message.BLOCKED_USER);
 		}
 
-		const isMatch = await bcrypt.compare(
-			input.memberPassword,
-			member.memberPassword
-		);
+		const isMatch = await bcrypt.compare(input.memberPassword, member.memberPassword);
 
 		if (!isMatch) {
 			throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
@@ -58,6 +50,7 @@ class MemberService {
 
 		return await this.memberModelClass.findById(member._id).lean().exec();
 	}
+
 	public async getMemberDetail(member: Member): Promise<Member> {
 		const memberId = shapeIntoMongooseObjectId(member._id);
 		const result = this.memberModelClass
@@ -67,6 +60,22 @@ class MemberService {
 		return result;
 	}
 
+	public async updateMember(member: Member, input: MemberInput): Promise<Member> {
+		try {
+			const memberId = shapeIntoMongooseObjectId(member._id);
+			const result = await this.memberModelClass
+				.findOneAndUpdate({ _id: memberId }, input, {
+					new: true,
+				})
+				.exec();
+
+			if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
+
+			return result;
+		} catch (err) {
+			throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
+		}
+	}
 	/**BSSR */
 	public async processSignup(input: MemberInput): Promise<Member> {
 		const exist = await this.memberModelClass
@@ -88,18 +97,12 @@ class MemberService {
 
 	public async processLogin(input: LoginInput): Promise<Member> {
 		const member = await this.memberModelClass
-			.findOne(
-				{ memberNick: input.memberNick },
-				{ memberNick: 1, memberPassword: 1 }
-			)
+			.findOne({ memberNick: input.memberNick }, { memberNick: 1, memberPassword: 1 })
 			.exec();
 
 		if (!member) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
 
-		const isMatch = await bcrypt.compare(
-			input.memberPassword,
-			member.memberPassword
-		);
+		const isMatch = await bcrypt.compare(input.memberPassword, member.memberPassword);
 
 		if (!isMatch) {
 			throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);

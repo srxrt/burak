@@ -64,14 +64,28 @@ memberController.logout = async (req: Request, res: Response) => {
 	}
 };
 
-memberController.getMemberDetail = async (
-	req: ExtendedRequest,
-	res: Response
-) => {
+memberController.getMemberDetail = async (req: ExtendedRequest, res: Response) => {
 	try {
 		console.log("getMemberDetail");
 		const result = await memberService.getMemberDetail(req.member);
 		res.status(HttpCode.OK).json({ result });
+	} catch (err) {
+		console.log("ERROR Logout", err);
+		if (err instanceof Errors) res.status(err.code).json(err);
+		else res.status(Errors.standard.code).json(Errors.standard);
+	}
+};
+
+memberController.updateMember = async (req: ExtendedRequest, res: Response) => {
+	try {
+		console.log("updateMemberDetails");
+		const input: MemberInput = req.body;
+
+		if (req.file) input.memberImage = req.file.path.replace(/\\/g, "/");
+
+		const result = await memberService.updateMember(req.member, input);
+
+		res.status(HttpCode.OK).json(result);
 	} catch (err) {
 		console.log("ERROR Logout", err);
 		if (err instanceof Errors) res.status(err.code).json(err);
@@ -87,8 +101,7 @@ memberController.verifyAuth = async (
 	try {
 		const token = req.cookies["accessToken"];
 		if (token) req.member = await authService.checkAuth(token);
-		if (!req.member)
-			throw new Errors(HttpCode.UNAUTHORIZED, Message.NOT_AUTHENTICATED);
+		if (!req.member) throw new Errors(HttpCode.UNAUTHORIZED, Message.NOT_AUTHENTICATED);
 		next();
 	} catch (err) {
 		console.log("Error Verify Auth", err);
