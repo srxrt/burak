@@ -297,7 +297,6 @@ function countChars(str: string) {
 }
 
 console.log(countChars("helllo"));
-*/
 // W-TASK:
 
 // Shunday function yozing, uni array va number parametrlari bolsin. Function arrayni numberda berilgan uzunlikda kesib bolaklarga ajratilgan array holatida qaytarsin
@@ -318,3 +317,46 @@ function chunkArray(arr: number[], num: number) {
 	return bigArr;
 }
 console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3));
+
+
+
+TASK X
+
+Shunday function yozing, uni object va string parametrlari bo'lsin.
+Bu function, birinchi object parametri tarkibida, kalit sifatida ikkinchi string parametri
+necha marotaba takrorlanganlini sanab qaytarsin.
+
+Eslatma => Nested object'lar ham sanalsin
+
+MASALAN: countOccurrences({model: 'Bugatti', steer: {model: 'HANKOOK', size: 30}}, 'model') return 2
+
+Yuqoridagi misolda, birinchi argument object, ikkinchi argument 'model'.
+Funktsiya, shu ikkinchi argument 'model', birinchi argument object
+tarkibida kalit sifatida 2 marotaba takrorlanganligi uchun 2 soni return qilmoqda
+*/
+interface T {
+	[key: string]: any;
+}
+let count = 0;
+function countOccurrences(obj: T, str: string): number {
+	const arr = Object.keys(obj);
+	arr.map((ele) => {
+		if (ele === str) count++;
+		if (typeof obj[ele] === "object") countOccurrences(obj[ele], str);
+		else return;
+	});
+	return count;
+}
+
+console.log(
+	countOccurrences(
+		{
+			model: "Bugatti",
+			steer: {
+				model: "HANKOOK",
+				size: 30,
+			},
+		},
+		"model"
+	)
+);
