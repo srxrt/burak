@@ -21,7 +21,6 @@ router.post(
 );
 router.get(
 	"/member/top-users",
-	memberController.verifyAuth,
 	memberController.getTopUsers
 );
 export default router;
