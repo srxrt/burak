@@ -18,9 +18,8 @@ class AuthService {
 		});
 	}
 	public async checkAuth(token: string): Promise<Member> {
-		const result: Member = (await jwt.verify(token, this.secretToken)) as Member;
-		console.log("___________AUTH:", result.memberNick);
-		return result;
+		const result = await jwt.verify(token, this.secretToken);
+		return result as Member;
 	}
 }
 

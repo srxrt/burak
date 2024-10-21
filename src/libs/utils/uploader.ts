@@ -1,11 +1,15 @@
 import path from "path";
 import multer from "multer";
 import { v4 } from "uuid";
+import fs from "fs";
 
 function getTargetImageStorage(address: any) {
 	return multer.diskStorage({
 		destination: (res, file, cb) => {
-			cb(null, `./uploads/${address}`);
+			const filePath = path.join("./uploads", address);
+			if (fs.existsSync(filePath)) cb(null, filePath);
+			else fs.mkdirSync(path.join("./uploads", address));
+			cb(null, filePath);
 		},
 		filename: (res, file, cb) => {
 			const extension = path.parse(file.originalname).ext;
