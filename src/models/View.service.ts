@@ -9,11 +9,13 @@ class ViewService {
 	constructor() {
 		this.viewModel = ViewModel;
 	}
+
 	public async checkViewExistence(input: ViewInput): Promise<View> {
 		return await this.viewModel
 			.findOne({ memberId: input.memberId, viewRefId: input.viewRefId })
 			.exec();
 	}
+
 	public async insertMemberView(input: ViewInput): Promise<View> {
 		try {
 			return await this.viewModel.create(input);
@@ -23,4 +25,5 @@ class ViewService {
 		}
 	}
 }
+
 export default ViewService;
